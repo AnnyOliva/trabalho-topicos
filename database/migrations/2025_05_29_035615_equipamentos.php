@@ -13,17 +13,13 @@ return new class extends Migration
     {
             Schema::create('equipamentos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_equip');
             $table->string('nome_equip');
             $table->text('numSerie');
             $table->date('dataInstalacao');
-            $table->unsignedBigInteger('created_by');
-            $table->foreign('clientes')
-                  ->references('id')->on('clientes')
-                  ->onDelete('cascade');
-            $table->foreign('modelos')
-                  ->references('id')->on('modelos')
-                  ->onDelete('cascade');
+            $table->unsignedBigInteger('clientes_id');
+            $table->foreign('clientes_id')
+                  ->references('id')->on('clientes');
+        
             $table->timestamps();
         });
     }
